@@ -2,7 +2,11 @@ image_name=jupyterhub_cds
 hub_namespace=natihd16
 
 build:
-	docker build -t ${hub_namespace}/${image_name} .
+	docker build \
+		--build-arg client_id=${client_id} \
+		--build-arg client_secret=${client_secret} \
+		--build-arg callback_url=${callback_url} \
+		-t ${hub_namespace}/${image_name} .
 push:
 	docker push ${hub_namespace}/${image_name}
 pull:
